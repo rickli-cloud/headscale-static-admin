@@ -23,9 +23,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        working-directory: app
         run: npm ci
 
       - name: Run check
-        working-directory: app
         run: npm run check
