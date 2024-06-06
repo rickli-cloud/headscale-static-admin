@@ -1,0 +1,9 @@
+<script lang="ts">
+	import DeviceList from '$lib/components/devices/DeviceList.svelte';
+
+	export let data;
+</script>
+
+<section>
+	<DeviceList machines={data.machines} />
+</section>
