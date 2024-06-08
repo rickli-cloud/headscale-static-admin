@@ -125,7 +125,7 @@
 						</p>
 
 						<p class="leading-7 text-muted-foreground">
-							This setting is unfortunately very hidden. There is a setup gide for
+							This setting is unfortunately very hidden. There is a setup guide for
 							<a
 								class="text-blue-600"
 								href="{$Session?.baseUrl ||

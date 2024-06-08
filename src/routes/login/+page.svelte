@@ -67,7 +67,7 @@
 					<Input
 						id="apihost"
 						type="url"
-						placeholder="{location.protocol}://{location.host}"
+						placeholder="{location.protocol}//{location.host}"
 						bind:value={$FormData.baseUrl}
 					/>
 				</div>

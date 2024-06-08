@@ -49,3 +49,16 @@ Install & build
 npm install
 npm run build
 ```
+
+### Just want it running
+
+Requires nodejs & npm.
+
+> In dev mode vite will spin up a proxy to work around cors issues. Do not change the API host on the login page.
+
+```sh
+git clone https://github.com/rickli-cloud/headscale-admin/
+npm install
+export HEADSCALE_HOST=https://your.headscale.instance
+npm run dev
+```
