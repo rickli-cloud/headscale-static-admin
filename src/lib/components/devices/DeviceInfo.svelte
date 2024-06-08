@@ -26,7 +26,6 @@
 	const ReassignData = writable<V1User>({});
 	const reassignDialogOpen = writable<boolean>(false);
 
-	let registerDialogOpen: boolean = false;
 	let editDialogOpen: boolean = false;
 	let tagsDialogOpen: boolean = false;
 	let expireDialogOpen: boolean = false;
@@ -192,6 +191,7 @@
 					onSubmit={async () => {
 						if (machine) await new Machine(machine).delete();
 						deleteDialogOpen = false;
+						window.location.href = base + '/devices';
 						invalidateAll();
 					}}
 				/>

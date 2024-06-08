@@ -1,17 +1,17 @@
+import type { InternalAxiosRequestConfig } from 'axios';
 import { get } from 'svelte/store';
+import { base } from '$app/paths';
 
 import { Session, endSession } from '$lib/store/session.js';
 import {
 	Api,
 	V1RegisterMethod,
+	type V1ApiKey,
 	type V1Machine,
 	type V1PreAuthKey,
 	type V1Route,
 	type V1User
 } from './api.js';
-import type { AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios';
-import { invalidateAll } from '$app/navigation';
-import { base } from '$app/paths';
 
 export class Headscale extends Api<unknown> {
 	constructor(customFetch: typeof fetch = fetch, session = get(Session)) {
@@ -239,5 +239,31 @@ export class Machine implements V1Machine {
 			tags: tags.map((tag) => (tagRegex.test(tag) ? tag : `tag:${tag}`))
 		});
 		return data.machine ? new Machine(data.machine) : undefined;
+	}
+}
+
+export class ApiKey implements V1ApiKey {
+	id?: string | undefined;
+	prefix?: string | undefined;
+	createdAt?: string | undefined;
+	expiration?: string | undefined;
+	lastSeen?: string | undefined;
+
+	constructor(data: V1ApiKey) {
+		for (const [key, value] of Object.entries(data)) {
+			this[key as keyof this] = value;
+		}
+	}
+
+	public async create(customFetch?: typeof fetch): Promise<string | undefined> {
+		if (!this.expiration) throw new Error('Internal: expiration is required to create an API key!');
+		const { data } = await new Headscale(customFetch).api.headscaleServiceCreateApiKey({
+			expiration: new Date(this.expiration).toISOString()
+		});
+		return data.apiKey;
+	}
+
+	public async expire(customFetch?: typeof fetch) {
+		await new Headscale(customFetch).api.headscaleServiceExpireApiKey({ prefix: this.prefix });
 	}
 }

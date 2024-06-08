@@ -2,6 +2,8 @@
 	import DeviceList from '$lib/components/devices/DeviceList.svelte';
 
 	export let data;
+
+	console.table(data.machines);
 </script>
 
 <section>

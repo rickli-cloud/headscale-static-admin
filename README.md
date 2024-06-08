@@ -1,7 +1,7 @@
 # Headscale admin
 
 ![issues](https://img.shields.io/github/issues/rickli-cloud/headscale-admin)
-![build](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-admin/check.yml)
+![build](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-admin/check.yaml)
 ![release](https://img.shields.io/github/v/release/rickli-cloud/headscale-admin)
 ![commits_since](https://img.shields.io/github/commits-since/rickli-cloud/headscale-admin/latest)
 

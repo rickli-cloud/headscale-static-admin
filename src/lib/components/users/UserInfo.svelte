@@ -13,6 +13,7 @@
 	import { parseValue } from '$lib/utils/misc';
 	import { User } from '$lib/api/utils';
 	import type { V1User } from '$lib/api/api';
+	import { base } from '$app/paths';
 
 	export let user: V1User | undefined;
 </script>
@@ -71,6 +72,7 @@
 					onSubmit={async () => {
 						if (user?.name) {
 							await new User(user).delete();
+							window.location.href = base + '/users';
 							invalidateAll();
 						}
 					}}

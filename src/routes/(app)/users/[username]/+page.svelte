@@ -5,7 +5,9 @@
 
 	export let data;
 
-	console.debug(data);
+	console.table(data.user);
+	console.table(data.machines);
+	console.table(data.preAuthKeys);
 </script>
 
 <section>

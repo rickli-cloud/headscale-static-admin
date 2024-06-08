@@ -61,7 +61,7 @@
 		<Table.Row>
 			<Table.Head class="w-[50px]"></Table.Head>
 			<Table.Head>Username</Table.Head>
-			<Table.Head>Created at</Table.Head>
+			<Table.Head>Created</Table.Head>
 			<Table.Head class="w-[100px]">ID</Table.Head>
 		</Table.Row>
 	</Table.Header>
