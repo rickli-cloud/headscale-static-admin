@@ -1,15 +1,40 @@
 # Headscale admin
 
 ![issues](https://img.shields.io/github/issues/rickli-cloud/headscale-admin)
-![build](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-admin/check.yaml)
+![checks](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-admin/check.yaml)
 ![release](https://img.shields.io/github/v/release/rickli-cloud/headscale-admin)
 ![commits_since](https://img.shields.io/github/commits-since/rickli-cloud/headscale-admin/latest)
 
-Fully featured web application to manage your headscale instance over the API.
+A sveltekit single page app to manage your headscale instance over the REST API with a beautiful UI built with [Shadcn-svelte](https://shadcn-svelte.com/).
+
+## Features
+
+Full implementation of the headscale REST API. This includes:
+
+- Users
+  - Create
+  - Rename
+  - Delete
+- Machines
+  - Register
+  - Rename
+  - Edit tags
+  - Delete
+  - Expire session
+  - Reassign
+- Routes
+  - Enable / Disable
+  - Delete
+- PreAuth keys
+  - Create
+  - Expire
+- Api keys
+  - Create
+  - Expire
 
 ## Install
 
-> Depending on the configuration you might encounter CORS issues.
+The app is only served on the `/admin` path. If you want another path you need to build the app from source.
 
 ### Docker
 
@@ -24,14 +49,13 @@ services:
     container_name: headscale-admin
     pull_policy: always
     restart: always
-    read_only: true
     ports:
       - 80:80/tcp
 ```
 
 ### Static content
 
-You can download a build on the release page.
+You can download a archive containing the static content for each version on the release page.
 
 ### Build your own
 
@@ -54,10 +78,11 @@ npm run build
 
 Requires nodejs & npm.
 
-> In dev mode vite will spin up a proxy to work around cors issues. Do not change the API host on the login page.
+> In dev mode vite will spin up a proxy to work around CORS issues. Do not change the API host on the login page.
 
 ```sh
 git clone https://github.com/rickli-cloud/headscale-admin/
+cd headscale-admin
 npm install
 export HEADSCALE_HOST=https://your.headscale.instance
 npm run dev

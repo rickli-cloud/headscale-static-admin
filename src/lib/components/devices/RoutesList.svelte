@@ -3,7 +3,7 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 	import { Badge } from '$lib/components/ui/badge';
 
@@ -30,7 +30,7 @@
 		<Table.Row>
 			<Table.Head class="w-[50px]"></Table.Head>
 			<Table.Head>Prefix</Table.Head>
-			<Table.Head>Machine</Table.Head>
+			<Table.Head>Device</Table.Head>
 			<Table.Head>Created</Table.Head>
 			<Table.Head>Updated</Table.Head>
 			<Table.Head>State</Table.Head>
@@ -55,24 +55,24 @@
 									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Separator />
 
-									<Dialog.Root bind:open={editDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={editDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm"
 										>
 											{route.enabled ? 'Disable' : 'Enable'}
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>{route.enabled ? 'Disable' : 'Enable'} route</Dialog.Title>
-												<Dialog.Description>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>{route.enabled ? 'Disable' : 'Enable'} route</Sheet.Title>
+												<Sheet.Description>
 													{route.enabled ? 'Disable' : 'Enable'} a route for all your clients
-												</Dialog.Description>
-											</Dialog.Header>
+												</Sheet.Description>
+											</Sheet.Header>
 
-											<Dialog.Footer>
+											<Sheet.Footer>
 												<Button variant="outline" on:click={() => (editDialogOpen = false)}>
 													Cancel
 												</Button>
@@ -90,28 +90,28 @@
 												>
 													Continue
 												</Button>
-											</Dialog.Footer>
-										</Dialog.Content>
-									</Dialog.Root>
+											</Sheet.Footer>
+										</Sheet.Content>
+									</Sheet.Root>
 
 									<!-- <DropdownMenu.Item class="cursor-pointer !text-red-600">Delete</DropdownMenu.Item> -->
-									<Dialog.Root bind:open={deleteDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={deleteDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm text-red-600"
 										>
 											Delete
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Delete route</Dialog.Title>
-												<Dialog.Description>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Delete route</Sheet.Title>
+												<Sheet.Description>
 													This action cannot be undone. Routes cant be created using the API, only
 													clients can advertise them.
-												</Dialog.Description>
-											</Dialog.Header>
+												</Sheet.Description>
+											</Sheet.Header>
 
 											<ConfirmDelete
 												phrase={`routes/${route.prefix || ''}`}
@@ -121,8 +121,8 @@
 													invalidateAll();
 												}}
 											/>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>

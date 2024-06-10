@@ -3,10 +3,10 @@
 	import { get, writable } from 'svelte/store';
 
 	import { DotsHorizontal, Plus } from 'svelte-radix';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
@@ -31,20 +31,20 @@
 	</div>
 
 	<div>
-		<Dialog.Root bind:open={createDialogOpen}>
-			<Dialog.Trigger
+		<Sheet.Root bind:open={createDialogOpen}>
+			<Sheet.Trigger
 				class="{buttonVariants({
 					variant: 'ghost'
 				})} !h-[50px] !w-[50px]"
 			>
 				<Plus />
-			</Dialog.Trigger>
+			</Sheet.Trigger>
 
-			<Dialog.Content>
-				<Dialog.Header class="mb-3">
-					<Dialog.Title>Create new api key</Dialog.Title>
-					<Dialog.Description>You can always expire this key</Dialog.Description>
-				</Dialog.Header>
+			<Sheet.Content>
+				<Sheet.Header class="mb-3">
+					<Sheet.Title>Create new api key</Sheet.Title>
+					<Sheet.Description>You can always expire this key</Sheet.Description>
+				</Sheet.Header>
 
 				{#if $NewKeyResult}
 					<div class="font-semibold">New api key:</div>
@@ -100,8 +100,8 @@
 						</div>
 					</div>
 				{/if}
-			</Dialog.Content>
-		</Dialog.Root>
+			</Sheet.Content>
+		</Sheet.Root>
 	</div>
 </Card.Header>
 
@@ -134,23 +134,23 @@
 									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Separator />
 
-									<Dialog.Root bind:open={expireDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={expireDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm text-red-600"
 											disabled={new Date(key.expiration || '').getTime() - Date.now() < 0}
 										>
 											Expire
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Expire api key</Dialog.Title>
-												<Dialog.Description>This will make the key unusable</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Expire api key</Sheet.Title>
+												<Sheet.Description>This will make the key unusable</Sheet.Description>
+											</Sheet.Header>
 
-											<Dialog.Footer>
+											<Sheet.Footer>
 												<Button variant="outline" on:click={() => (expireDialogOpen = false)}>
 													Cancel
 												</Button>
@@ -166,9 +166,9 @@
 												>
 													Continue
 												</Button>
-											</Dialog.Footer>
-										</Dialog.Content>
-									</Dialog.Root>
+											</Sheet.Footer>
+										</Sheet.Content>
+									</Sheet.Root>
 								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>

@@ -4,9 +4,9 @@
 
 	import { DotsHorizontal, Plus } from 'svelte-radix';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
@@ -65,20 +65,20 @@
 
 	<div>
 		{#if creatable}
-			<Dialog.Root bind:open={actionsDialogOpen}>
-				<Dialog.Trigger
+			<Sheet.Root bind:open={actionsDialogOpen}>
+				<Sheet.Trigger
 					class="{buttonVariants({
 						variant: 'ghost'
 					})} !h-[50px] !w-[50px]"
 				>
 					<Plus />
-				</Dialog.Trigger>
+				</Sheet.Trigger>
 
-				<Dialog.Content>
-					<Dialog.Header class="mb-3">
-						<Dialog.Title>Create new preauth key</Dialog.Title>
-						<Dialog.Description>Keys can only be expired not deleted.</Dialog.Description>
-					</Dialog.Header>
+				<Sheet.Content>
+					<Sheet.Header class="mb-3">
+						<Sheet.Title>Create new preauth key</Sheet.Title>
+						<Sheet.Description>Keys can only be expired not deleted.</Sheet.Description>
+					</Sheet.Header>
 
 					<form
 						id="userinfo"
@@ -138,8 +138,8 @@
 							<Button form="userinfo" type="submit" disabled={$Working}>Continue</Button>
 						</div>
 					</div>
-				</Dialog.Content>
-			</Dialog.Root>
+				</Sheet.Content>
+			</Sheet.Root>
 		{/if}
 	</div>
 </Card.Header>
@@ -173,25 +173,25 @@
 									<DropdownMenu.Label>Actions</DropdownMenu.Label>
 									<DropdownMenu.Separator />
 
-									<Dialog.Root bind:open={expireDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={expireDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm text-red-600"
 											disabled={new Date(key.expiration || '').getTime() - Date.now() < 0}
 										>
 											Expire
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Expire preauth key</Dialog.Title>
-												<Dialog.Description>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Expire preauth key</Sheet.Title>
+												<Sheet.Description>
 													This makes the key unusable. This action cannot be undone.
-												</Dialog.Description>
-											</Dialog.Header>
+												</Sheet.Description>
+											</Sheet.Header>
 
-											<Dialog.Footer>
+											<Sheet.Footer>
 												<Button variant="outline" on:click={() => (expireDialogOpen = false)}>
 													Cancel
 												</Button>
@@ -207,9 +207,9 @@
 												>
 													Continue
 												</Button>
-											</Dialog.Footer>
-										</Dialog.Content>
-									</Dialog.Root>
+											</Sheet.Footer>
+										</Sheet.Content>
+									</Sheet.Root>
 								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>

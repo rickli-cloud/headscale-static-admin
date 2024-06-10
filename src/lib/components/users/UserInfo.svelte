@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
 
-	import SquarePen from 'lucide-svelte/icons/square-pen';
 	import Trash2 from 'lucide-svelte/icons/trash-2';
+	import SquarePen from 'lucide-svelte/icons/square-pen';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
-	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
 
 	import ConfirmDelete from '$lib/components/general/ConfirmDelete.svelte';
@@ -25,20 +25,20 @@
 	</div>
 
 	<div class="flex gap-1">
-		<Dialog.Root>
-			<Dialog.Trigger
+		<Sheet.Root>
+			<Sheet.Trigger
 				class="{buttonVariants({
 					variant: 'ghost'
 				})} !h-[50px] !w-[50px]"
 			>
 				<SquarePen />
-			</Dialog.Trigger>
+			</Sheet.Trigger>
 
-			<Dialog.Content>
-				<Dialog.Header class="mb-3">
-					<Dialog.Title>Edit user</Dialog.Title>
-					<Dialog.Description>This action cannot be undone.</Dialog.Description>
-				</Dialog.Header>
+			<Sheet.Content>
+				<Sheet.Header class="mb-3">
+					<Sheet.Title>Edit user</Sheet.Title>
+					<Sheet.Description>This action cannot be undone.</Sheet.Description>
+				</Sheet.Header>
 
 				<EditName
 					name={user?.name}
@@ -49,23 +49,23 @@
 						}
 					}}
 				/>
-			</Dialog.Content>
-		</Dialog.Root>
+			</Sheet.Content>
+		</Sheet.Root>
 
-		<Dialog.Root>
-			<Dialog.Trigger
+		<Sheet.Root>
+			<Sheet.Trigger
 				class="{buttonVariants({
 					variant: 'ghost'
 				})} !h-[50px] !w-[50px]"
 			>
 				<Trash2 class="text-red-600" />
-			</Dialog.Trigger>
+			</Sheet.Trigger>
 
-			<Dialog.Content>
-				<Dialog.Header class="mb-3">
-					<Dialog.Title>Delete user</Dialog.Title>
-					<Dialog.Description>This action cannot be undone.</Dialog.Description>
-				</Dialog.Header>
+			<Sheet.Content>
+				<Sheet.Header class="mb-3">
+					<Sheet.Title>Delete user</Sheet.Title>
+					<Sheet.Description>This action cannot be undone.</Sheet.Description>
+				</Sheet.Header>
 
 				<ConfirmDelete
 					phrase={'users/' + user?.name || ''}
@@ -77,8 +77,8 @@
 						}
 					}}
 				/>
-			</Dialog.Content>
-		</Dialog.Root>
+			</Sheet.Content>
+		</Sheet.Root>
 	</div>
 </Card.Header>
 

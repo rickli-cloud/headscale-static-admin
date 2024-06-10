@@ -6,7 +6,7 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
-	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 
 	import ConfirmDelete from '$lib/components/general/ConfirmDelete.svelte';
@@ -29,20 +29,20 @@
 	</div>
 
 	<div>
-		<Dialog.Root bind:open={createDialogOpen}>
-			<Dialog.Trigger
+		<Sheet.Root bind:open={createDialogOpen}>
+			<Sheet.Trigger
 				class="{buttonVariants({
 					variant: 'ghost'
 				})} !h-[50px] !w-[50px]"
 			>
 				<Plus />
-			</Dialog.Trigger>
+			</Sheet.Trigger>
 
-			<Dialog.Content>
-				<Dialog.Header class="mb-3">
-					<Dialog.Title>Create new user</Dialog.Title>
-					<Dialog.Description>You can always edit or delete this user later</Dialog.Description>
-				</Dialog.Header>
+			<Sheet.Content>
+				<Sheet.Header class="mb-3">
+					<Sheet.Title>Create new user</Sheet.Title>
+					<Sheet.Description>You can always edit or delete this user later</Sheet.Description>
+				</Sheet.Header>
 
 				<EditName
 					onSubmit={async (name) => {
@@ -51,8 +51,8 @@
 						invalidateAll();
 					}}
 				/>
-			</Dialog.Content>
-		</Dialog.Root>
+			</Sheet.Content>
+		</Sheet.Root>
 	</div>
 </Card.Header>
 
@@ -90,20 +90,20 @@
 										Show
 									</DropdownMenu.Item>
 
-									<Dialog.Root bind:open={editDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={editDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm"
 										>
 											Edit
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Edit user</Dialog.Title>
-												<Dialog.Description>This action cannot be undone</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Edit user</Sheet.Title>
+												<Sheet.Description>This action cannot be undone</Sheet.Description>
+											</Sheet.Header>
 
 											<EditName
 												name={user.name}
@@ -115,24 +115,24 @@
 													}
 												}}
 											/>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 
 									<!-- <DropdownMenu.Item class="cursor-pointer !text-red-600">Delete</DropdownMenu.Item> -->
-									<Dialog.Root bind:open={deleteDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={deleteDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm text-red-600"
 										>
 											Delete
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Delete user</Dialog.Title>
-												<Dialog.Description>This action cannot be undone</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Delete user</Sheet.Title>
+												<Sheet.Description>This action cannot be undone</Sheet.Description>
+											</Sheet.Header>
 
 											<ConfirmDelete
 												phrase={'users/' + user.name || ''}
@@ -144,8 +144,8 @@
 													}
 												}}
 											/>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>

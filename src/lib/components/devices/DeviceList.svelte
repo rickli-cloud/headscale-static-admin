@@ -6,9 +6,9 @@
 	import { DotsHorizontal, Plus } from 'svelte-radix';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import * as Tabs from '$lib/components/ui/tabs';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
@@ -48,20 +48,20 @@
 	</div>
 
 	<div>
-		<Dialog.Root bind:open={registerDialogOpen}>
-			<Dialog.Trigger
+		<Sheet.Root bind:open={registerDialogOpen}>
+			<Sheet.Trigger
 				class="{buttonVariants({
 					variant: 'ghost'
 				})} !h-[50px] !w-[50px]"
 			>
 				<Plus />
-			</Dialog.Trigger>
+			</Sheet.Trigger>
 
-			<Dialog.Content>
-				<Dialog.Header>
-					<Dialog.Title>Register a new device</Dialog.Title>
-					<Dialog.Description>There are multiple ways to register a device</Dialog.Description>
-				</Dialog.Header>
+			<Sheet.Content>
+				<Sheet.Header>
+					<Sheet.Title>Register a new device</Sheet.Title>
+					<Sheet.Description>There are multiple ways to register a device</Sheet.Description>
+				</Sheet.Header>
 
 				<Tabs.Root value="manual">
 					<Tabs.List class="mx-auto mb-6 table">
@@ -149,8 +149,8 @@
 						</p>
 					</Tabs.Content>
 				</Tabs.Root>
-			</Dialog.Content>
-		</Dialog.Root>
+			</Sheet.Content>
+		</Sheet.Root>
 	</div>
 </Card.Header>
 
@@ -192,20 +192,20 @@
 										Show
 									</DropdownMenu.Item>
 
-									<Dialog.Root bind:open={editDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={editDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm"
 										>
 											Edit
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Edit device</Dialog.Title>
-												<Dialog.Description>This action cannot be undone</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Edit device</Sheet.Title>
+												<Sheet.Description>This action cannot be undone</Sheet.Description>
+											</Sheet.Header>
 
 											<EditName
 												name={machine.givenName}
@@ -215,23 +215,23 @@
 													invalidateAll();
 												}}
 											/>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 
-									<Dialog.Root bind:open={tagsDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={tagsDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm"
 										>
 											Tags
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Device tags</Dialog.Title>
-												<Dialog.Description>Used to manage access control</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Device tags</Sheet.Title>
+												<Sheet.Description>Used to manage access control</Sheet.Description>
+											</Sheet.Header>
 
 											<Tags
 												bind:this={tagsEditor}
@@ -244,23 +244,23 @@
 												editable
 												title
 											/>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 
-									<Dialog.Root bind:open={$reassignDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={$reassignDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm"
 										>
 											Reassign
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Reassign device</Dialog.Title>
-												<Dialog.Description>Change which user owns this device</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Reassign device</Sheet.Title>
+												<Sheet.Description>Change which user owns this device</Sheet.Description>
+											</Sheet.Header>
 
 											<form
 												id="reassign-machine"
@@ -286,28 +286,28 @@
 													<Button form="reassign-machine" type="submit">Continue</Button>
 												</div>
 											</div>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 
-									<Dialog.Root bind:open={expireDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={expireDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm text-red-600"
 											disabled={new Date(machine.expiry || '').getTime() - Date.now() < 0}
 										>
 											Expire
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Expire device session</Dialog.Title>
-												<Dialog.Description>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Expire device session</Sheet.Title>
+												<Sheet.Description>
 													Expire the session of a device and force it to reauthenticate.
-												</Dialog.Description>
-											</Dialog.Header>
+												</Sheet.Description>
+											</Sheet.Header>
 
-											<Dialog.Footer>
+											<Sheet.Footer>
 												<Button variant="outline" on:click={() => (expireDialogOpen = false)}>
 													Cancel
 												</Button>
@@ -323,24 +323,24 @@
 												>
 													Continue
 												</Button>
-											</Dialog.Footer>
-										</Dialog.Content>
-									</Dialog.Root>
+											</Sheet.Footer>
+										</Sheet.Content>
+									</Sheet.Root>
 
-									<Dialog.Root bind:open={deleteDialogOpen}>
-										<Dialog.Trigger
+									<Sheet.Root bind:open={deleteDialogOpen}>
+										<Sheet.Trigger
 											class="{buttonVariants({
 												variant: 'ghost'
 											})} !block !h-8 w-full !px-2 !py-1.5 text-left !text-sm text-red-600"
 										>
 											Delete
-										</Dialog.Trigger>
+										</Sheet.Trigger>
 
-										<Dialog.Content>
-											<Dialog.Header class="mb-3">
-												<Dialog.Title>Delete device</Dialog.Title>
-												<Dialog.Description>This action cannot be undone</Dialog.Description>
-											</Dialog.Header>
+										<Sheet.Content>
+											<Sheet.Header class="mb-3">
+												<Sheet.Title>Delete device</Sheet.Title>
+												<Sheet.Description>This action cannot be undone</Sheet.Description>
+											</Sheet.Header>
 
 											<ConfirmDelete
 												phrase={'devices/' + machine.givenName || machine.name || ''}
@@ -350,8 +350,8 @@
 													invalidateAll();
 												}}
 											/>
-										</Dialog.Content>
-									</Dialog.Root>
+										</Sheet.Content>
+									</Sheet.Root>
 								</DropdownMenu.Group>
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { get, writable } from 'svelte/store';
+	import { writable } from 'svelte/store';
 
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
@@ -39,6 +39,8 @@
 		<Button variant="outline" type="reset" on:click={() => InputPhrase.set('')} disabled={$Working}>
 			Reset
 		</Button>
-		<Button form="userinfo" type="submit" disabled={$MatchErr || $Working}>Continue</Button>
+		<Button form="userinfo" type="submit" disabled={$MatchErr || $Working} variant="destructive">
+			Continue
+		</Button>
 	</div>
 </div>
