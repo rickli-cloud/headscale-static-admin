@@ -42,12 +42,20 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Build docker image
+      - name: Build versioned docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           tags: ghcr.io/rickli-cloud/headscale-admin:${{ github.ref_name }}
+          push: true
+
+      - name: Build latest docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/rickli-cloud/headscale-admin:latest
           push: true
 
       - name: Release build assets
