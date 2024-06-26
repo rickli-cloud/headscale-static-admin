@@ -1,9 +1,9 @@
 # Headscale static admin
 
-![issues](https://img.shields.io/github/issues/rickli-cloud/headscale-admin)
-![checks](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-admin/check.yaml)
-![release](https://img.shields.io/github/v/release/rickli-cloud/headscale-admin)
-![commits_since](https://img.shields.io/github/commits-since/rickli-cloud/headscale-admin/latest)
+![issues](https://img.shields.io/github/issues/rickli-cloud/headscale-static-admin)
+![checks](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-static-admin/check.yaml)
+![release](https://img.shields.io/github/v/release/rickli-cloud/headscale-static-admin)
+![commits_since](https://img.shields.io/github/commits-since/rickli-cloud/headscale-static-admin/latest)
 
 A sveltekit single page app to manage your headscale instance over the REST API with a beautiful UI built with [Shadcn-svelte](https://shadcn-svelte.com/).
 
@@ -45,7 +45,7 @@ version: '3.8'
 
 services:
   headscale-admin:
-    image: ghcr.io/rickli-cloud/headscale-admin
+    image: ghcr.io/rickli-cloud/headscale-static-admin
     container_name: headscale-admin
     pull_policy: always
     restart: always
@@ -81,7 +81,7 @@ Requires nodejs & npm.
 > In dev mode vite will spin up a proxy to work around CORS issues. Do not change the API host on the login page.
 
 ```sh
-git clone https://github.com/rickli-cloud/headscale-admin/
+git clone https://github.com/rickli-cloud/headscale-static-admin/
 cd headscale-admin
 npm install
 export HEADSCALE_HOST=https://your.headscale.instance
