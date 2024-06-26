@@ -1,5 +1,5 @@
 {
-	"name": "headscale-admin",
+	"name": "headscale-static-admin",
 	"version": "0.0.0-latest",
 	"private": false,
 	"scripts": {

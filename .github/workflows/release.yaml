@@ -47,7 +47,7 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/rickli-cloud/headscale-admin:${{ github.ref_name }}
+          tags: ghcr.io/rickli-cloud/headscale-static-admin:${{ github.ref_name }}
           push: true
 
       - name: Build latest docker image
@@ -55,7 +55,7 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/rickli-cloud/headscale-admin:latest
+          tags: ghcr.io/rickli-cloud/headscale-static-admin:latest
           push: true
 
       - name: Release build assets

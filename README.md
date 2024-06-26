@@ -1,4 +1,4 @@
-# Headscale admin
+# Headscale static admin
 
 ![issues](https://img.shields.io/github/issues/rickli-cloud/headscale-admin)
 ![checks](https://img.shields.io/github/actions/workflow/status/rickli-cloud/headscale-admin/check.yaml)
